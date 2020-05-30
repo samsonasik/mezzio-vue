@@ -3,7 +3,9 @@
 ## Installation
 
 *1.* Git clone
+
 *2.* Run composer install
+
 *3.* Run PHP Development server
 
 ```php
