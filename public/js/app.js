@@ -1,14 +1,17 @@
 createPage = () => {
     return {
         mounted () {
-            axios.get(
-                this.$route.path,
-                {
-                    headers: {
-                      'X-Requested-With': 'XMLHttpRequest'
+            (new Promise( (resolve) => {
+                fetch(
+                    this.$route.path,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                        }
                     }
-                }
-            ).then(response => pageContent.innerHTML = response);
+                ).then((response) =>  resolve(response.text()));
+            })).then(result => pageContent.innerHTML = result);
         },
         template: '<div id="pageContent"></div>'
     };
@@ -28,5 +31,4 @@ const app    = new Vue({router}).$mount('#root')
 
 // https://vuejs.org/v2/guide/
 // https://router.vuejs.org/guide/#html
-// https://daengweb.id/vuejs-ajax-request-menggunakan-axios
 // https://medium.com/badr-interactive/mengenal-lifecycle-hooks-pada-vue-js-78cd2225a69
