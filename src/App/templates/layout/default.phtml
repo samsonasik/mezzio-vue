@@ -3,6 +3,12 @@ $this->headLink()
     ->prependStylesheet('https://use.fontawesome.com/releases/v5.12.1/css/all.css')
     ->prependStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
 $this->inlineScript()
+
+    ->prependFile('/js/app.js')
+    ->prependFile('https://unpkg.com/axios@0.2.1/dist/axios.min.js')
+    ->prependFile('https://unpkg.com/vue-router@3.3.2/dist/vue-router.js')
+    ->prependFile('https://unpkg.com/vue@2.6.11/dist/vue.js')
+
     ->prependFile('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
     ->prependFile('https://code.jquery.com/jquery-3.5.0.min.js');
 ?>
@@ -26,55 +32,38 @@ $this->inlineScript()
     </style>
 </head>
 <body class="app">
-    <header class="app-header">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <!-- Brand -->
-                    <a class="navbar-brand" href="<?=$this->url('home')?>">
-                        <img src="https://docs.laminas.dev/img/laminas-mezzio-rgb.svg" alt="Laminas Mezzio" height="56" />
-                    </a>
-                </div>
-                <!-- Links -->
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a href="<?=$this->url('home')?>" class="nav-link">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?=$this->url('about')?>" class="nav-link">
-                                About
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://docs.mezzio.dev/mezzio" target="_blank" class="nav-link">
-                                <i class="fa fa-book"></i> Docs
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://github.com/mezzio/mezzio" target="_blank" class="nav-link">
-                                <i class="fa fa-wrench"></i> Contribute
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?=$this->url('api.ping')?>" class="nav-link">
-                                Ping Test
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <div class="app-content">
+    <div id="root">
+        <header class="app-header">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <router-link to="/" class="navbar-brand"><img src="https://docs.laminas.dev/img/laminas-mezzio-rgb.svg" alt="Laminas Mezzio" height="56" /></router-link>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <router-link to="/" class="nav-link">Home</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/about" class="nav-link">About</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/contact" class="nav-link">Contact</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
         <main class="container">
-            <?=$this->content?>
+            <div id="app">
+                <router-view></router-view>
+            </div>
         </main>
     </div>
 
@@ -87,6 +76,6 @@ $this->inlineScript()
         </div>
     </footer>
 
-    <?=$this->inlineScript()?>
+<?=$this->inlineScript()?>
 </body>
 </html>
