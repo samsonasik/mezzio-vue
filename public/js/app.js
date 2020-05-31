@@ -25,6 +25,8 @@ const routes = [
 
 const router = new VueRouter({
     routes,
+    base: '/',
+    mode: 'history',
     linkExactActiveClass: "active"
 });
 const app    = new Vue({router}).$mount('#root')
