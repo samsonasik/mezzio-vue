@@ -1,5 +1,10 @@
 createPage = () => {
     return {
+        data: () => {
+            return  {
+              content: ''
+            }
+        },
         mounted () {
             (new Promise( (resolve) => {
                 fetch(
@@ -11,9 +16,9 @@ createPage = () => {
                         }
                     }
                 ).then((response) =>  resolve(response.text()));
-            })).then(result => pageContent.innerHTML = result);
+            })).then(result => this.content = result);
         },
-        template: '<div id="pageContent"></div>'
+        template: '<div v-html="content">{{ content }}</div>'
     };
 }
 
