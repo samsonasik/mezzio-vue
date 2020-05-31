@@ -1,5 +1,5 @@
-createPage = () => {
-    return {
+createPage = (name) => {
+    return Vue.component('page-' + name, {
         data: () => {
             return  {
               content: ''
@@ -19,13 +19,13 @@ createPage = () => {
             })).then(result => this.content = result);
         },
         template: '<div v-html="content"></div>'
-    };
+    });
 }
 
 const routes = [
-    { path: '/', component: createPage() },
-    { path: '/about', component: createPage() },
-    { path: '/contact', component: createPage() }
+    { path: '/', component: createPage('home') },
+    { path: '/about', component: createPage('about') },
+    { path: '/contact', component: createPage('contact') }
 ];
 
 const router = new VueRouter({
