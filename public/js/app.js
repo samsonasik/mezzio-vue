@@ -34,3 +34,4 @@ const app    = new Vue({router}).$mount('#root')
 // https://vuejs.org/v2/guide/
 // https://router.vuejs.org/guide/#html
 // https://medium.com/badr-interactive/mengenal-lifecycle-hooks-pada-vue-js-78cd2225a69
+// https://forum.vuejs.org/t/setting-a-correct-base-url-with-vue-router/24726/2
