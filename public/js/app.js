@@ -18,7 +18,7 @@ createPage = () => {
                 ).then((response) =>  resolve(response.text()));
             })).then(result => this.content = result);
         },
-        template: '<div v-html="content">{{ content }}</div>'
+        template: '<div v-html="content"></div>'
     };
 }
 
