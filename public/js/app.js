@@ -15,7 +15,7 @@ createPage = () => {
                             'X-Requested-With': 'XMLHttpRequest',
                         }
                     }
-                ).then((response) =>  resolve(response.text()));
+                ).then(response =>  resolve(response.text()));
             })).then(result => this.content = result);
         },
         template: '<div v-html="content"></div>'
