@@ -1,8 +1,6 @@
 createPage = (name, object = {}, methods = {}) => {
     return Vue.component('page-' + name, {
-        data: function () {
-            return Object.assign({'content': ''}, object);;
-        },
+        data: () => Object.assign({'content': ''}, object),
         mounted () {
             (new Promise( (resolve) => {
                 fetch(
@@ -31,7 +29,7 @@ const routes = [
             name: 'Abdul Malik Ikhsan'
         },
         {
-            hit: () => alert('I am a web developer!')
+            hit: () => alert('This alert already proof that I am a web developer!')
         }
     )},
     { path: '/contact', component: createPage('contact') },
