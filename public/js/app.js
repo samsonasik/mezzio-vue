@@ -1,6 +1,7 @@
 createPage = (name, object = {}, methods = {}) => {
     return Vue.component('page-' + name, {
-        data: () => Object.assign({'content': ''}, object),
+        data    : () => Object.assign({'content': ''}, object),
+        methods : methods,
         mounted () {
             (new Promise( (resolve) => {
                 fetch(
@@ -14,10 +15,9 @@ createPage = (name, object = {}, methods = {}) => {
                 ).then(response =>  resolve(response.text()));
             })).then(result => this.content = result);
         },
-        render: function (c) {
+        render : function (c) {
             return c(Vue.compile('<div>' + this.content + '</div>'));
-        },
-        methods: methods
+        }
     });
 }
 
