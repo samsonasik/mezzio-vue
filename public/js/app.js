@@ -1,3 +1,14 @@
+const store = new Vuex.Store({
+    state: {
+      log: []
+    },
+    mutations: {
+      union (state, value) {
+          state.log = _.union(state.log, value);
+      }
+    }
+});
+
 createPage = (name, object = {}, methods = {}) => {
     return Vue.component('page-' + name, {
         data    : () => Object.assign({content: ''}, object),
@@ -13,7 +24,11 @@ createPage = (name, object = {}, methods = {}) => {
                         }
                     }
                 ).then(response =>  resolve(response.text()));
-            })).then(result => this.content = result);
+            })).then(result => {
+                this.content = result;
+                store.commit('union', [this.$route.path]);
+                console.log(store.state.log);
+            });
         },
         render : function (c) {
             if (this.content == '') {
@@ -49,7 +64,6 @@ const router = new VueRouter({
 vue = new Vue({
     router
 }).$mount('#root');
-
 // https://vuejs.org/v2/guide/
 // https://router.vuejs.org/guide/#html
 // https://medium.com/badr-interactive/mengenal-lifecycle-hooks-pada-vue-js-78cd2225a69
