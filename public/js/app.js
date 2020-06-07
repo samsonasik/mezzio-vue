@@ -1,6 +1,6 @@
 createPage = (name, object = {}, methods = {}) => {
     return Vue.component('page-' + name, {
-        data    : () => Object.assign({'content': ''}, object),
+        data    : () => Object.assign({content: ''}, object),
         methods : methods,
         mounted () {
             (new Promise( (resolve) => {
