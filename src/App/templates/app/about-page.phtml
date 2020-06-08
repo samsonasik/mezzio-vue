@@ -9,7 +9,6 @@
     let name = `{{ this.$parent.name }}`
 </script>
 
-<?php $this->inlineScript()->prependFile('/js/about.js', 'module'); ?>
 <script type="module">
 import About from '/js/about.js';
 About(name).showoff();
