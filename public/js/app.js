@@ -25,7 +25,8 @@ createPage = (name) => {
 const routes = [
     { path: '/', component: createPage('home') },
     { path: '/about', component: createPage('about') },
-    { path: '/contact', component: createPage('contact') }
+    { path: '/contact', component: createPage('contact') },
+    { path: "*", component: createPage('404') }
 ];
 
 const router = new VueRouter({
