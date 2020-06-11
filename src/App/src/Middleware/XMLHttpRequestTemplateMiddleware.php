@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use Laminas\Diactoros\Response\HtmlResponse;
-use Mezzio\Handler\NotFoundHandler;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -15,12 +14,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class XMLHttpRequestTemplateMiddleware implements MiddlewareInterface
 {
-    private $notFoundHandler;
     private $template;
 
-    public function __construct(NotFoundHandler $notFoundHandler, TemplateRendererInterface $template)
+    public function __construct(TemplateRendererInterface $template)
     {
-        $this->notFoundHandler = $notFoundHandler;
         $this->template        = $template;
     }
 
