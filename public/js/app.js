@@ -51,7 +51,8 @@ const routes = [
             hit: () => alert('This alert already proof that I am a web developer!')
         }
     )},
-    { path: '/contact', component: createPage('contact') }
+    { path: '/contact', component: createPage('contact') },
+    { path: '/portfolio', component: createPage('portfolio') }
 ];
 
 const router = new VueRouter({

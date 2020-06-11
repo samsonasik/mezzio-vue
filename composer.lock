@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1ad80b53d81082bf0dbf058ceb1bb96",
+    "content-hash": "eab4687fd86d4ee077808ecaaf3d2138",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -204,6 +204,68 @@
                 "laminas"
             ],
             "time": "2020-03-29T12:04:04+00:00"
+        },
+        {
+            "name": "laminas/laminas-db",
+            "version": "2.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-db.git",
+                "reference": "6c4238918b9204db1eb8cafae2c1940d40f4c007"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/6c4238918b9204db1eb8cafae2c1940d40f4c007",
+                "reference": "6c4238918b9204db1eb8cafae2c1940d40f4c007",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-stdlib": "^2.7 || ^3.0",
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": "^5.6 || ^7.0"
+            },
+            "replace": {
+                "zendframework/zend-db": "^2.11.0"
+            },
+            "require-dev": {
+                "laminas/laminas-coding-standard": "~1.0.0",
+                "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
+                "laminas/laminas-hydrator": "^1.1 || ^2.1 || ^3.0",
+                "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14"
+            },
+            "suggest": {
+                "laminas/laminas-eventmanager": "Laminas\\EventManager component",
+                "laminas/laminas-hydrator": "Laminas\\Hydrator component for using HydratingResultSets",
+                "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.11.x-dev",
+                    "dev-develop": "2.12.x-dev"
+                },
+                "laminas": {
+                    "component": "Laminas\\Db",
+                    "config-provider": "Laminas\\Db\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Db\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "db",
+                "laminas"
+            ],
+            "time": "2020-03-29T12:08:51+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -624,6 +686,75 @@
                 "loader"
             ],
             "time": "2019-12-31T17:18:27+00:00"
+        },
+        {
+            "name": "laminas/laminas-paginator",
+            "version": "2.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-paginator.git",
+                "reference": "5e53d927776b2d20e420bc2b289fa0c364a6b0bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-paginator/zipball/5e53d927776b2d20e420bc2b289fa0c364a6b0bd",
+                "reference": "5e53d927776b2d20e420bc2b289fa0c364a6b0bd",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-stdlib": "^2.7 || ^3.0",
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": "^7.0 || ^5.6"
+            },
+            "replace": {
+                "zendframework/zend-paginator": "self.version"
+            },
+            "require-dev": {
+                "laminas/laminas-cache": "^2.6.1",
+                "laminas/laminas-coding-standard": "~1.0.0",
+                "laminas/laminas-config": "^2.6.0",
+                "laminas/laminas-db": "^2.9.2",
+                "laminas/laminas-filter": "^2.6.1",
+                "laminas/laminas-json": "^2.6.1",
+                "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
+                "laminas/laminas-view": "^2.6.3",
+                "phpunit/phpunit": "^6.2.1 || ^5.7.15"
+            },
+            "suggest": {
+                "laminas/laminas-cache": "Laminas\\Cache component to support cache features",
+                "laminas/laminas-db": "Laminas\\Db component",
+                "laminas/laminas-filter": "Laminas\\Filter component",
+                "laminas/laminas-json": "Laminas\\Json component",
+                "laminas/laminas-servicemanager": "Laminas\\ServiceManager component",
+                "laminas/laminas-view": "Laminas\\View component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8.x-dev",
+                    "dev-develop": "2.9.x-dev"
+                },
+                "laminas": {
+                    "component": "Laminas\\Paginator",
+                    "config-provider": "Laminas\\Paginator\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\Paginator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Paginate collections of data from arbitrary sources",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "laminas",
+                "paginator"
+            ],
+            "time": "2019-12-31T17:36:22+00:00"
         },
         {
             "name": "laminas/laminas-psr7bridge",
