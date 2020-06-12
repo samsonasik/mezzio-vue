@@ -37,10 +37,11 @@ class ConfigProvider
                 Handler\PingHandler::class => Handler\PingHandler::class,
             ],
             'factories'  => [
-                Handler\HomePageHandler::class  => Handler\HomePageHandlerFactory::class,
-                Handler\AboutPageHandler::class => ReflectionBasedAbstractFactory::class,
-                Handler\ContactPageHandler::class => ReflectionBasedAbstractFactory::class,
+                Handler\HomePageHandler::class                     => Handler\HomePageHandlerFactory::class,
+                Handler\AboutPageHandler::class                    => ReflectionBasedAbstractFactory::class,
+                Handler\ContactPageHandler::class                  => ReflectionBasedAbstractFactory::class,
                 Middleware\XMLHttpRequestTemplateMiddleware::class => ReflectionBasedAbstractFactory::class,
+                Middleware\NotFoundMiddleware::class               => ReflectionBasedAbstractFactory::class,
             ],
         ];
     }

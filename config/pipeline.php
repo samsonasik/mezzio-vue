@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Middleware\NotFoundMiddleware;
 use App\Middleware\XMLHttpRequestTemplateMiddleware;
 use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Application;
@@ -70,4 +71,5 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(XMLHttpRequestTemplateMiddleware::class);
     $app->pipe(DispatchMiddleware::class);
+    $app->pipe(NotFoundMiddleware::class);
 };
