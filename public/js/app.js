@@ -26,18 +26,42 @@ createPage = (name, object = {}, methods = {}) => {
 }
 
 const routes = [
-    { path: '/', component: createPage('home') },
-    { path: '/about', component: createPage(
-        'about',
-        {
-            name: 'Abdul Malik Ikhsan'
-        },
-        {
-            hit: () => alert('This alert already proof that I am a web developer!')
+    {
+        path: '/',
+        component: createPage('home'),
+        meta: {
+            title: 'Home'
         }
-    )},
-    { path: '/contact', component: createPage('contact') },
-    { path: "*", component: createPage('404') }
+    },
+    {
+        path: '/about',
+        component: createPage(
+            'about',
+            {
+                name: 'Abdul Malik Ikhsan'
+            },
+            {
+                hit: () => alert('This alert already proof that I am a web developer!')
+            }
+        ),
+        meta: {
+            title: 'About Me'
+        }
+    },
+    {
+        path: '/contact',
+        component: createPage('contact'),
+        meta: {
+            title: 'Contact Me'
+        }
+    },
+    {
+        path: "*",
+        component: createPage('404'),
+        meta: {
+            title: '404 Not Found'
+        }
+    }
 ];
 
 const router = new VueRouter({
@@ -46,6 +70,8 @@ const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: "active"
 });
+
+router.afterEach(to => document.title = to.meta.title);
 
 vue = new Vue({
     router
