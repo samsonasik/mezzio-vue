@@ -71,10 +71,7 @@ const router = new VueRouter({
     linkExactActiveClass: "active"
 });
 
-router.beforeResolve((to, from, next) => {
-    document.title = to.meta.title;
-    next();
-});
+router.afterEach(to => document.title = to.meta.title);
 
 vue = new Vue({
     router
