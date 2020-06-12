@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use Laminas\Diactoros\Response\HtmlResponse;
-use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -27,11 +26,6 @@ class XMLHttpRequestTemplateMiddleware implements MiddlewareInterface
             (function ($template) {
                 $template->layout = false;
             })->bindTo($this->template, $this->template)($this->template);
-        }
-
-        $routeResult    = $request->getAttribute(RouteResult::class);
-        if ($routeResult->isFailure()) {
-            return new HtmlResponse($this->template->render('error::404'));
         }
 
         return $handler->handle($request);
