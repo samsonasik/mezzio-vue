@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use Laminas\Diactoros\Response\HtmlResponse;
-use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -25,11 +24,8 @@ class NotFoundMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
-        $routeResult    = $request->getAttribute(RouteResult::class);
-        if ($routeResult->isFailure()) {
-            return new HtmlResponse($this->template->render($this->config['mezzio']['error_handler']['template_404']));
-        }
-
-        return $handler->handle($request);
+        return new HtmlResponse(
+            $this->template->render($this->config['mezzio']['error_handler']['template_404'])
+        );
     }
 }
