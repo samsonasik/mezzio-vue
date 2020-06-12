@@ -1,4 +1,15 @@
 <h1>About Me</h1>
 <p>
-    I'm a web developer.
+    I'm a web developer. <br /><br />
+    My name is {{ this.$parent.name }}. <br />
+    <button v-on:click="this.$parent.hit">Click this as a proof</button>
 </p>
+
+<script type="application/javascript">
+    let name = `{{ this.$parent.name }}`
+</script>
+
+<script type="module">
+import About from '/js/about.js';
+About(name).showoff();
+</script>
