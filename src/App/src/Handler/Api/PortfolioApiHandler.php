@@ -14,14 +14,14 @@ class PortfolioApiHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
         $data  = include './data/portfolio.php';
-        $query = $request->getQueryParams()['keyword'] ?? '';
+        $keyword = $request->getQueryParams()['keyword'] ?? '';
 
-        $data = array_filter($data, function ($value) use ($query) {
-            return $query
+        $data = array_filter($data, function ($value) use ($keyword) {
+            return $keyword
                 && (
-                    strpos(strtolower($value['title']), strtolower($query)) !== false
+                    strpos(strtolower($value['title']), strtolower($keyword)) !== false
                     ||
-                    strpos(strtolower($value['link']), strtolower($query)) !== false
+                    strpos(strtolower($value['link']), strtolower($keyword)) !== false
                 );
         });
 

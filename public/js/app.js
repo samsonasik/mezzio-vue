@@ -57,7 +57,29 @@ const routes = [
     },
     {
         path: '/portfolio',
-        component: createPage('portfolio'),
+        component: createPage(
+            'portfolio',
+            {},
+            {
+                search: (e) => {
+                    let keyword = e.target.value;
+
+                    (new Promise( (resolve) => {
+                        fetch(
+                            '/api/portfolio?keyword=' + keyword,
+                            {
+                                method: 'GET',
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                }
+                            }
+                        ).then(response =>  resolve(response.json()));
+                    })).then(result => {
+                        console.log(result);
+                    });
+                }
+            }
+        ),
         meta: {
             title: 'My Portfolio'
         }
