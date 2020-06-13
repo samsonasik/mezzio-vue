@@ -1,4 +1,4 @@
-createPage = (name, object = {}, methods = {}, computed = {}) => {
+createPage = (name, object = {}, methods = {}) => {
     return Vue.component('page-' + name, {
         data    : () => Object.assign({content: ''}, object),
         methods : methods,
@@ -21,10 +21,20 @@ createPage = (name, object = {}, methods = {}, computed = {}) => {
             }
 
             return c(Vue.compile('<div>' + this.content + '</div>'));
-        },
-        computed: computed
+        }
     });
 }
+
+const store = new Vuex.Store({
+    state: {
+        portfolio : {}
+    },
+    mutations: {
+        search (state, data) {
+            state.portfolio[data.keyword] = data.value;
+        }
+    }
+});
 
 const routes = [
     {
@@ -65,12 +75,19 @@ const routes = [
             },
             {
                 search: function (e) {
+                    let keyword = e.target.value;
+
+                    if (typeof store.state.portfolio[keyword] !== 'undefined') {
+                        this.portfolio = store.state.portfolio[keyword];
+                        return;
+                    }
+
                     (async () => {
                         let portfolio = [];
 
                         await new Promise( (resolve) => {
                             fetch(
-                                '/api/portfolio?keyword=' + e.target.value,
+                                '/api/portfolio?keyword=' + keyword,
                                 {
                                     method: 'GET',
                                     headers: {
@@ -80,6 +97,7 @@ const routes = [
                             ).then(response =>  resolve(response.json()));
                         }).then(result => portfolio = result);
 
+                        store.commit('search', { keyword: keyword, value: portfolio });
                         this.portfolio = portfolio;
                     })();
                 }
