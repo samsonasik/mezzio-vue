@@ -81,8 +81,6 @@ const routes = [
                     }
 
                     (async () => {
-                        let portfolio = [];
-
                         await new Promise( (resolve) => {
                             fetch(
                                 '/api/portfolio?keyword=' + keyword,
