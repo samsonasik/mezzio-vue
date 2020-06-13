@@ -56,6 +56,56 @@ const routes = [
         }
     },
     {
+        path: '/portfolio',
+        component: createPage(
+            'portfolio',
+            {
+                portfolio : []
+            },
+            {
+                search: function (e) {
+                    let keyword = e.target.value;
+
+                    if (typeof store.state.portfolio[keyword] !== 'undefined') {
+                        this.portfolio = store.state.portfolio[keyword];
+
+                        return;
+                    }
+
+                    if (sessionStorage.getItem('search-' + keyword)) {
+                        portfolio     = JSON.parse(sessionStorage.getItem('search-' + keyword));
+                        store.commit('search', { keyword: keyword, value: portfolio });
+                        this.portfolio = portfolio;
+
+                        return;
+                    }
+
+                    (async () => {
+                        let portfolio = [];
+
+                        await new Promise( (resolve) => {
+                            fetch(
+                                '/api/portfolio?keyword=' + keyword,
+                                {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                    }
+                                }
+                            ).then(response =>  resolve(response.json()));
+                        }).then(result => portfolio = result);
+
+                        store.commit('search', { keyword: keyword, value: portfolio });
+                        this.portfolio = portfolio;
+                    })();
+                }
+            }
+        ),
+        meta: {
+            title: 'My Portfolio'
+        }
+    },
+    {
         path: "*",
         component: createPage('404'),
         meta: {
@@ -83,3 +133,4 @@ vue = new Vue({
 // https://forum.vuejs.org/t/setting-a-correct-base-url-with-vue-router/24726/2
 // https://vuejs.org/v2/guide/render-function.html#Functional-Components
 // https://stackoverflow.com/questions/51548729/vuejs-vue-app-render-method-with-dynamic-template-compiled-is-throwing-some/51552701
+// https://medium.com/js-dojo/how-to-permanently-save-data-with-vuex-localstorage-in-your-vue-app-f1d5c140db69
