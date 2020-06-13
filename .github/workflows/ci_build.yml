@@ -26,6 +26,6 @@ jobs:
       - name: "Validate composer.json and composer.lock"
         run: "composer validate"
       - name: "Install dependencies"
-        run: "composer update --prefer-dist --no-progress --ignore-platform-req=composer-plugin-api && composer development-enable"
+        run: "composer install --prefer-dist --no-progress --ignore-platform-req=composer-plugin-api && composer development-enable"
       - name: "Run test suite"
         run: "composer test-coverage"
