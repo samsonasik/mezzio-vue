@@ -1,5 +1,7 @@
 # Example Using Vue.js in Mezzio application
 
+![ci build](https://github.com/samsonasik/mezzio-vue/workflows/ci%20build/badge.svg)
+
 ## Installation
 
 *1.* Git clone
