@@ -25,17 +25,6 @@ createPage = (name, object = {}, methods = {}) => {
     });
 }
 
-const store = new Vuex.Store({
-    state: {
-        portfolio : {}
-    },
-    mutations: {
-        search (state, data) {
-            state.portfolio[data.keyword] = data.value;
-        }
-    }
-});
-
 const routes = [
     {
         path: '/',

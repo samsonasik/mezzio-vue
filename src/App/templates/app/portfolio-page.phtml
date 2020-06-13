@@ -14,5 +14,16 @@ Keyword: <input type="keyword" id="keyword" v-on:input="this.$parent.search" v-o
 </table>
 
 <script type="application/javascript">
+const store = new Vuex.Store({
+    state: {
+        portfolio : {}
+    },
+    mutations: {
+        search (state, data) {
+            state.portfolio[data.keyword] = data.value;
+        }
+    }
+});
+
 document.querySelector('#keyword').focus();
 </script>
