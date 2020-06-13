@@ -91,10 +91,9 @@ const routes = [
                                     }
                                 }
                             ).then(response =>  resolve(response.json()));
-                        }).then(result => portfolio = result);
+                        }).then(result => this.portfolio = result);
 
-                        store.commit('search', { keyword: keyword, value: portfolio });
-                        this.portfolio = portfolio;
+                        store.commit('search', { keyword: keyword, value: this.portfolio });
                     })();
                 }
             }
