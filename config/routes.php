@@ -37,4 +37,5 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
     $app->get('/about', App\Handler\AboutPageHandler::class, 'about');
     $app->get('/contact', App\Handler\ContactPageHandler::class, 'contact');
+    $app->get('/api/portfolio', App\Handler\Api\PortfolioApiHandler::class, 'api-portfolio');
 };

@@ -83,3 +83,4 @@ vue = new Vue({
 // https://forum.vuejs.org/t/setting-a-correct-base-url-with-vue-router/24726/2
 // https://vuejs.org/v2/guide/render-function.html#Functional-Components
 // https://stackoverflow.com/questions/51548729/vuejs-vue-app-render-method-with-dynamic-template-compiled-is-throwing-some/51552701
+// https://medium.com/js-dojo/how-to-permanently-save-data-with-vuex-localstorage-in-your-vue-app-f1d5c140db69
