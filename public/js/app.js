@@ -56,6 +56,13 @@ const routes = [
         }
     },
     {
+        path: '/portfolio',
+        component: createPage('portfolio'),
+        meta: {
+            title: 'My Portfolio'
+        }
+    },
+    {
         path: "*",
         component: createPage('404'),
         meta: {

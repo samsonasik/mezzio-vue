@@ -38,4 +38,5 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/about', App\Handler\AboutPageHandler::class, 'about');
     $app->get('/contact', App\Handler\ContactPageHandler::class, 'contact');
     $app->get('/api/portfolio', App\Handler\Api\PortfolioApiHandler::class, 'api-portfolio');
+    $app->get('/portfolio', App\Handler\PortfolioPageHandler::class, 'portfolio');
 };

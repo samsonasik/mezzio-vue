@@ -41,6 +41,7 @@ class ConfigProvider
                 Handler\AboutPageHandler::class                    => ReflectionBasedAbstractFactory::class,
                 Handler\ContactPageHandler::class                  => ReflectionBasedAbstractFactory::class,
                 Handler\Api\PortfolioApiHandler::class             => ReflectionBasedAbstractFactory::class,
+                Handler\PortfolioPageHandler::class                => ReflectionBasedAbstractFactory::class,
                 Middleware\XMLHttpRequestTemplateMiddleware::class => ReflectionBasedAbstractFactory::class,
                 Middleware\NotFoundMiddleware::class               => ReflectionBasedAbstractFactory::class,
             ],
