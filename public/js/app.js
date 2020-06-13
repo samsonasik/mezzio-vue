@@ -1,4 +1,4 @@
-createPage = (name, object = {}, methods = {}) => {
+createPage = (name, object = {}, methods = {}, computed = {}) => {
     return Vue.component('page-' + name, {
         data    : () => Object.assign({content: ''}, object),
         methods : methods,
@@ -21,7 +21,8 @@ createPage = (name, object = {}, methods = {}) => {
             }
 
             return c(Vue.compile('<div>' + this.content + '</div>'));
-        }
+        },
+        computed: computed
     });
 }
 
@@ -59,24 +60,28 @@ const routes = [
         path: '/portfolio',
         component: createPage(
             'portfolio',
-            {},
             {
-                search: (e) => {
-                    let keyword = e.target.value;
+                portfolio : []
+            },
+            {
+                search: function (e) {
+                    (async () => {
+                        let portfolio = [];
 
-                    (new Promise( (resolve) => {
-                        fetch(
-                            '/api/portfolio?keyword=' + keyword,
-                            {
-                                method: 'GET',
-                                headers: {
-                                    'X-Requested-With': 'XMLHttpRequest',
+                        await new Promise( (resolve) => {
+                            fetch(
+                                '/api/portfolio?keyword=' + e.target.value,
+                                {
+                                    method: 'GET',
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                    }
                                 }
-                            }
-                        ).then(response =>  resolve(response.json()));
-                    })).then(result => {
-                        console.log(result);
-                    });
+                            ).then(response =>  resolve(response.json()));
+                        }).then(result => portfolio = result);
+
+                        this.portfolio = portfolio;
+                    })();
                 }
             }
         ),

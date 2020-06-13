@@ -1,4 +1,4 @@
-<input type="keyword" id="keyword" v-on:input="this.$parent.search"/>
+Keyword: <input type="keyword" id="keyword" v-on:input="this.$parent.search" v-on:focus="this.$parent.search"/> <br /><br />
 
 <table class="table">
 	<tr>
@@ -6,4 +6,13 @@
 		<th>Image</th>
         <th>Link</th>
 	</tr>
+    <tr v-for="loop in this.$parent.portfolio" :key="loop.id">
+        <td>{{ loop.title }}</td>
+        <td><img :src="`${ loop.image }`" /></td>
+        <td>{{ loop.link }}</td>
+    </tr>
 </table>
+
+<script type="application/javascript">
+document.querySelector('#keyword').focus();
+</script>
