@@ -6,17 +6,7 @@
 
 *1.* Git clone
 
-*2.* If you have php 7.2 or 7.3, you can run :
-
-```
-composer update
-```
-
-If you have php 7.4, you can run :
-
-```
-composer install
-```
+*2.* Run `composer install`
 
 *3.* Run PHP Development server
 
