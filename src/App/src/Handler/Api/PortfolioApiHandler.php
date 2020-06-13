@@ -16,14 +16,15 @@ class PortfolioApiHandler implements RequestHandlerInterface
         $data  = include './data/portfolio.php';
         $keyword = $request->getQueryParams()['keyword'] ?? '';
 
-        $data = array_filter($data, function ($value) use ($keyword) {
-            return $keyword
-                && (
+        if ($keyword) {
+            $data = array_filter($data, function ($value) use ($keyword) {
+                return (
                     strpos(strtolower($value['title']), strtolower($keyword)) !== false
                     ||
                     strpos(strtolower($value['link']), strtolower($keyword)) !== false
                 );
-        });
+            });
+        }
 
         return new JsonResponse($data);
     }
