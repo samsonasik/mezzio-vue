@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['7.3', '7.4']
     steps:
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.8.2
@@ -24,8 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Validate composer.json and composer.lock"
-        run: "composer validate"
+        run: "composer self-update --stable && composer validate"
       - name: "Install dependencies"
-        run: "composer install --prefer-dist --no-progress --ignore-platform-req=composer-plugin-api && composer development-enable"
+        run: "composer install --prefer-dist --no-progress && composer development-enable"
       - name: "Run test suite"
         run: "composer test-coverage"
