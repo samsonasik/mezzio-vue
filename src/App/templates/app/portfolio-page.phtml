@@ -9,7 +9,7 @@ Keyword: <input type="keyword" id="keyword" v-on:input="this.$parent.search" v-o
     <tr v-for="loop in this.$parent.portfolio" :key="loop.id">
         <td>{{ loop.title }}</td>
         <td><img :src="`${ loop.image }`" /></td>
-        <td>{{ loop.link }}</td>
+        <td><a v-bind:href="`${ loop.link }`">{{ loop.link }}</a></td>
     </tr>
 </table>
 
