@@ -68,6 +68,15 @@ const routes = [
 
                     if (typeof store.state.portfolio[keyword] !== 'undefined') {
                         this.portfolio = store.state.portfolio[keyword];
+
+                        return;
+                    }
+
+                    if (sessionStorage.getItem('search-' + keyword)) {
+                        portfolio     = JSON.parse(sessionStorage.getItem('search-' + keyword));
+                        store.commit('search', { keyword: keyword, value: portfolio });
+                        this.portfolio = portfolio;
+
                         return;
                     }
 
