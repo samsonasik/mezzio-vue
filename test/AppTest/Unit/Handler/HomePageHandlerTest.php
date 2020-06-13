@@ -2,23 +2,26 @@
 
 declare(strict_types=1);
 
-namespace AppTest\Handler;
+namespace AppTest\Unit\Handler;
 
 use App\Handler\HomePageHandler;
+use function get_class;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
-use function get_class;
+use Psr\Http\Message\ServerRequestInterface;
 
 class HomePageHandlerTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var ContainerInterface|ObjectProphecy */
     protected $container;
 

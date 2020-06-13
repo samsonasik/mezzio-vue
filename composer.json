@@ -51,13 +51,14 @@
         "mezzio/mezzio-laminasviewrenderer": "^2.2"
     },
     "require-dev": {
+        "filp/whoops": "^2.7.1",
         "laminas/laminas-development-mode": "^3.2",
         "mezzio/mezzio-tooling": "^1.3",
         "phpspec/prophecy": "^1.10.3",
+        "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^7.5.20 || ^8.5.2 || ^9.0.1",
         "roave/security-advisories": "dev-master",
-        "squizlabs/php_codesniffer": "^2.9.2",
-        "filp/whoops": "^2.7.1"
+        "squizlabs/php_codesniffer": "^2.9.2"
     },
     "autoload": {
         "psr-4": {

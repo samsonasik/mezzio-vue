@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-namespace AppTest\Handler;
+namespace AppTest\Unit\Handler;
 
 use App\Handler\PingHandler;
+use function json_decode;
 use Laminas\Diactoros\Response\JsonResponse;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ServerRequestInterface;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-use function json_decode;
+use Psr\Http\Message\ServerRequestInterface;
 
 class PingHandlerTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testResponse()
     {
         $pingHandler = new PingHandler();
