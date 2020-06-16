@@ -75,3 +75,5 @@ In `default.phtml`, we have a `isDevelopment()` view helper check to use `js/app
     )
 // ...
 ```
+
+that will automatically take care of that.
