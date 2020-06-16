@@ -18,7 +18,14 @@ composer serve
 
 ## Production
 
-It has `webpack.config.js` in root directory that when we run `webpack` command, we can get `public/js/dist/bundle.js`:
+It has `webpack.config.js` in root directory that when we run `webpack` command. If you don't have a `webpack` installed yet in your system, you can install nodejs and install `webpack` and `webpack-cli`:
+
+```bash
+$ sudo npm install -g webpack
+$ sudo npm install -g webpack-cli
+```
+
+we can get `public/js/dist/bundle.js` after run it:
 
 ```bash
 $ webpack
