@@ -44,7 +44,7 @@ Entrypoint main = public/js/dist/bundle.js
     | ./public/js/portfolio.js 1.34 KiB [built]
 ```
 
-After it generated, we can install the following commands to get `production` environment by default:
+After it generated, we can run the following commands to get `production` environment by default:
 
 ```bash
 # ensure no left over file development config
