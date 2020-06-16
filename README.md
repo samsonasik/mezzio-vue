@@ -20,9 +20,9 @@ $ composer serve
 
 *3.* Open web browser http://localhost:8080
 
-## Production Deploy
+## Production
 
-It has `webpack.config.js` in root directory that when we run `webpack` command, we can get `public/js/dist/bundle.js` after run it. If you don't have a `webpack` installed yet in your system, you can install nodejs and install `webpack` and `webpack-cli`:
+For deploy to production purpose, it has `webpack.config.js` in root directory that when we run `webpack` command, we can get `public/js/dist/bundle.js` after run it. If you don't have a `webpack` installed yet in your system, you can install nodejs and install `webpack` and `webpack-cli`:
 
 ```bash
 $ sudo npm install -g webpack
