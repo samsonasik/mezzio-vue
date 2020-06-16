@@ -17,11 +17,12 @@ class PortfolioApiHandler implements RequestHandlerInterface
         $keyword = $request->getQueryParams()['keyword'] ?? '';
 
         if ($keyword) {
+            $keyword = strtolower($keyword);
             $data = array_filter($data, function ($value) use ($keyword) {
                 return (
-                    strpos(strtolower($value['title']), strtolower($keyword)) !== false
+                    strpos(strtolower($value['title']), $keyword) !== false
                     ||
-                    strpos(strtolower($value['link']), strtolower($keyword)) !== false
+                    strpos(strtolower($value['link']), $keyword) !== false
                 );
             });
         }
