@@ -2,21 +2,25 @@
 
 ![ci build](https://github.com/samsonasik/mezzio-vue/workflows/ci%20build/badge.svg)
 
-## Installation
+## Setup
 
-*1.* Git clone
+*1.* Run composer create-project command:
 
-*2.* Run `composer install && composer development-enable`
-
-*3.* Run PHP Development server
-
-```php
-composer serve
+```bash
+$ composer create-project -sdev samsonasik/mezzio-vue
+$ composer development-enable
 ```
 
-*4.* Open web browser http://localhost:8080
+*2.* Run PHP Development server
 
-## Production
+```php
+$ cd mezzio-vue
+$ composer serve
+```
+
+*3.* Open web browser http://localhost:8080
+
+## Production Deploy
 
 It has `webpack.config.js` in root directory that when we run `webpack` command, we can get `public/js/dist/bundle.js` after run it. If you don't have a `webpack` installed yet in your system, you can install nodejs and install `webpack` and `webpack-cli`:
 
