@@ -1,29 +1,6 @@
-createPage = (name, object = {}, methods = {}) => {
-    return Vue.component('page-' + name, {
-        data    : () => Object.assign({content: ''}, object),
-        methods : methods,
-        mounted () {
-            (new Promise( (resolve) => {
-                fetch(
-                    this.$route.path,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                        }
-                    }
-                ).then(response =>  resolve(response.text()));
-            })).then(result => this.content = result);
-        },
-        render : function (c) {
-            if (this.content == '') {
-                return;
-            }
-
-            return c(Vue.compile('<div>' + this.content + '</div>'));
-        }
-    });
-}
+import createPage from '/js/create-page.js';
+import about      from '/js/about.js';
+import portfolio  from '/js/portfolio.js';
 
 const routes = [
     {
@@ -35,15 +12,7 @@ const routes = [
     },
     {
         path: '/about',
-        component: createPage(
-            'about',
-            {
-                name: 'Abdul Malik Ikhsan'
-            },
-            {
-                hit: () => alert('This alert already proof that I am a web developer!')
-            }
-        ),
+        component: about,
         meta: {
             title: 'About Me'
         }
@@ -57,47 +26,7 @@ const routes = [
     },
     {
         path: '/portfolio',
-        component: createPage(
-            'portfolio',
-            {
-                portfolio : []
-            },
-            {
-                search: function (e) {
-                    let keyword = e.target.value;
-
-                    if (typeof store.state.portfolio[keyword] !== 'undefined') {
-                        this.portfolio = store.state.portfolio[keyword];
-
-                        return;
-                    }
-
-                    if (sessionStorage.getItem('search-' + keyword)) {
-                        portfolio     = JSON.parse(sessionStorage.getItem('search-' + keyword));
-                        store.commit('search', { keyword: keyword, value: portfolio });
-                        this.portfolio = portfolio;
-
-                        return;
-                    }
-
-                    (async () => {
-                        await new Promise( (resolve) => {
-                            fetch(
-                                '/api/portfolio?keyword=' + keyword,
-                                {
-                                    method: 'GET',
-                                    headers: {
-                                        'X-Requested-With': 'XMLHttpRequest',
-                                    }
-                                }
-                            ).then(response =>  resolve(response.json()));
-                        }).then(result => this.portfolio = result);
-
-                        store.commit('search', { keyword: keyword, value: this.portfolio });
-                    })();
-                }
-            }
-        ),
+        component: portfolio,
         meta: {
             title: 'My Portfolio'
         }
@@ -120,9 +49,7 @@ const router = new VueRouter({
 
 router.afterEach(to => document.title = to.meta.title);
 
-vue = new Vue({
-    router
-}).$mount('#root');
+new Vue({router}).$mount('#root');
 
 // https://vuejs.org/v2/guide/
 // https://router.vuejs.org/guide/#html
@@ -130,4 +57,4 @@ vue = new Vue({
 // https://forum.vuejs.org/t/setting-a-correct-base-url-with-vue-router/24726/2
 // https://vuejs.org/v2/guide/render-function.html#Functional-Components
 // https://stackoverflow.com/questions/51548729/vuejs-vue-app-render-method-with-dynamic-template-compiled-is-throwing-some/51552701
-// https://medium.com/js-dojo/how-to-permanently-save-data-with-vuex-localstorage-in-your-vue-app-f1d5c140db69
+// https://javascript.info/modules-intro
