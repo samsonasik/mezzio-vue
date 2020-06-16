@@ -53,8 +53,8 @@ $ rm config/development.config.php && rm config/autoload/development.local.php
 # install with --no-dev
 $ composer install --no-dev
 
-# ensure no left over file cache
-$ php bin/clear-config-cache.php
+# ensure no left over file cache before re-build cache
+$ composer clear-config-cache
 ```
 
 In `default.phtml`, we have a `isDevelopment()` view helper check to use `js/app.js` when on development, and use `/js/dist/bundle.js` on production when exists.
