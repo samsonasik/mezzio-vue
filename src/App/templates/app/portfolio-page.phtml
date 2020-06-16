@@ -21,7 +21,7 @@ Keyword: <input type="keyword" id="keyword" v-on:input="this.$parent.search" v-o
 <script type="application/javascript">
 const store = new Vuex.Store({
     state: {
-        portfolio : {}
+        portfolio : []
     },
     mutations: {
         search (state, data) {
