@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App;
 
 use App\View\Helper\IsDevelopment;
-use App\View\Helper\IsDevelopmentFactory;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
 /**
@@ -27,8 +26,11 @@ class ConfigProvider
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
             'view_helpers' => [
+                'aliases' => [
+                    'isDevelopment' => IsDevelopment::class,
+                ],
                 'factories' => [
-                    'isDevelopment' => IsDevelopmentFactory::class,
+                    IsDevelopment::class => ReflectionBasedAbstractFactory::class,
                 ],
             ],
         ];
