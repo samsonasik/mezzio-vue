@@ -3,7 +3,13 @@ import createPage from './create-page.js';
 let portfolio = createPage(
     'portfolio',
     {
-        portfolio : {}
+        portfolio : [
+            {
+                title : 'loading...',
+                image : '',
+                link  : '',
+            }
+        ]
     },
     {
         search: function (e) {
