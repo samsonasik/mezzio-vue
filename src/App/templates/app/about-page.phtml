@@ -4,12 +4,3 @@
     My name is {{ this.$parent.name }}. <br />
     <button v-on:click="this.$parent.hit">Click this as a proof</button>
 </p>
-
-<script type="application/javascript">
-    let name = `{{ this.$parent.name }}`
-</script>
-
-<script type="module">
-import { showoff } from '/js/about.js';
-showoff(name)
-</script>

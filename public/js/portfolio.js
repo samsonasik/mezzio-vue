@@ -24,8 +24,10 @@ let portfolio = createPage(
         ]
     },
     {
-        search: function (e) {
-            let keyword = e.target.value;
+        search: function (e = null) {
+            let keyword = e !== null
+                ? e.target.value
+                : '';
 
             if (typeof store.state.portfolio[keyword] !== 'undefined') {
                 this.portfolio = store.state.portfolio[keyword];
@@ -57,6 +59,9 @@ let portfolio = createPage(
                 store.commit('search', { keyword: keyword, value: this.portfolio });
             })();
         }
+    },
+    function () {
+        this.$nextTick(() => this.search());
     }
 );
 
