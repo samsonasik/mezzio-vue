@@ -1,4 +1,4 @@
-import createPage from '/js/create-page.js';
+import createPage from './create-page.js';
 
 let about = createPage(
     'about',

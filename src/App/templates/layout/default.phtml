@@ -4,7 +4,18 @@ $this->headLink()
     ->prependStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
 $this->inlineScript()
 
-    ->prependFile('/js/app.js', 'module')
+    ->prependFile(
+        $this->isDevelopment()
+            ? '/js/app.js'
+            : (
+                // when run webpack, allow to use bundled js
+                // fallback to use /js/app.js when not
+                file_exists('./public/js/dist/bundle.js')
+                    ? '/js/dist/bundle.js'
+                    : '/js/app.js'
+            ),
+        'module'
+    )
     ->prependFile('https://unpkg.com/vuex@3.4.0/dist/vuex.js')
     ->prependFile('https://unpkg.com/vue-router@3.3.2/dist/vue-router.js')
     ->prependFile('https://unpkg.com/vue@2.6.11/dist/vue.js')

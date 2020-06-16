@@ -1,6 +1,6 @@
-import createPage from '/js/create-page.js';
-import about      from '/js/about.js';
-import portfolio  from '/js/portfolio.js';
+import createPage from './create-page.js';
+import about      from './about.js';
+import portfolio  from './portfolio.js';
 
 const routes = [
     {
