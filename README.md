@@ -44,10 +44,17 @@ Entrypoint main = public/js/dist/bundle.js
     | ./public/js/portfolio.js 1.34 KiB [built]
 ```
 
-After it generated, we can install with `--no-dev` so we get `production` by default:
+After it generated, we can install the following commands to get `production` environment by default:
 
 ```bash
+# ensure no left over file development config
+$ rm config/development.config.php && rm config/autoload/development.local.php
+
+# install with --no-dev
 $ composer install --no-dev
+
+# ensure no left over file cache
+$ php bin/clear-config-cache.php
 ```
 
 In `default.phtml`, we have a `isDevelopment()` view helper check to use `js/app.js` when on development, and use `/js/dist/bundle.js` on production when exists.
