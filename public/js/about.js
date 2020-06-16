@@ -1,9 +1,15 @@
-export default (name) => (
+import createPage from '/js/create-page.js';
+
+let about = createPage(
+    'about',
     {
-      name: name,
-      showoff() {
-        console.log(this.name, ' showing off');
-      }
+        name: 'Abdul Malik Ikhsan'
+    },
+    {
+        hit: () => alert('This alert already proof that I am a web developer!')
     }
 );
-// ref https://masputih.com/2017/12/import-export-modul-dalam-es6
+
+export let showoff = (name) => console.log(name, ' showing off');
+
+export default about;
