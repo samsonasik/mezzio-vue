@@ -19,9 +19,14 @@ class HomePageHandlerTest extends TestCase
     public function testReturnsHtmlResponse()
     {
         $renderer = $this->prophesize(TemplateRendererInterface::class);
+
+        ob_start();
+        require_once 'src/App/templates/app/portfolio-page.phtml';
+        $content = ob_get_clean();
+
         $renderer
             ->render('app::home-page', Argument::type('array'))
-            ->willReturn(require_once 'src/App/templates/app/home-page.phtml');
+            ->willReturn($content);
 
         $homePage = new HomePageHandler(
             $renderer->reveal()

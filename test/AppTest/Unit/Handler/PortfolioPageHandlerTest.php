@@ -18,9 +18,14 @@ class PortfolioPageHandlerTest extends TestCase
     public function testReturnsHtmlResponse()
     {
         $renderer = $this->prophesize(TemplateRendererInterface::class);
+
+        ob_start();
+        require_once 'src/App/templates/app/portfolio-page.phtml';
+        $content = ob_get_clean();
+
         $renderer
             ->render('app::portfolio-page')
-            ->willReturn(require_once 'src/App/templates/app/portfolio-page.phtml');
+            ->willReturn($content);
 
         $page = new PortfolioPageHandler(
             $renderer->reveal()
