@@ -9,7 +9,6 @@ use function json_decode;
 use Laminas\Diactoros\Response\JsonResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-
 use Psr\Http\Message\ServerRequestInterface;
 
 class PortfolioApiHandlerTest extends TestCase
