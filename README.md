@@ -1,6 +1,6 @@
 # Example Using Vue.js in Mezzio application
 
-![ci build](https://github.com/samsonasik/mezzio-vue/workflows/ci%20build/badge.svg)
+![ci build](https://github.com/samsonasik/mezzio-vue/workflows/ci%20build/badge.svg) [![Code Coverage](https://codecov.io/gh/{your github user}/{your github repo}/branch/master/graph/badge.svg)](https://codecov.io/gh/{your github user}/{your github repo})
 
 ## Setup
 

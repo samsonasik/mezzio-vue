@@ -29,3 +29,12 @@ jobs:
         run: "composer install --prefer-dist --no-progress --ignore-platform-req=composer-plugin-api && composer development-enable"
       - name: "Run test suite"
         run: "composer test-coverage"
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+         token: ${{ secrets.CODECOV_TOKEN }}
+         file: ./clover.xml
+         flags: tests
+         name: codecov-umbrella
+         yml: ./codecov.yml
+         fail_ci_if_error: true
