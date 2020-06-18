@@ -37,5 +37,6 @@ class HomePageHandlerTest extends TestCase
         );
 
         $this->assertInstanceOf(HtmlResponse::class, $response);
+        $this->assertEquals($content, $response->getBody());
     }
 }
