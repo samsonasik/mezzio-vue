@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Validate composer.json and composer.lock"
-        run: "composer update --stable && composer validate"
+        run: "composer self-update --stable && composer validate"
       - name: "Install dependencies"
         run: "composer install --prefer-dist --no-progress--ignore-platform-req=composer-plugin-api && composer development-enable"
       - name: "CS Check"
