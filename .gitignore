@@ -3,3 +3,4 @@
 /phpunit.xml
 /vendor/
 /public/js/dist/*
+/test/html
