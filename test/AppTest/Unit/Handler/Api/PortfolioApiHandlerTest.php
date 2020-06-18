@@ -16,11 +16,19 @@ class PortfolioApiHandlerTest extends TestCase
 {
     use ProphecyTrait;
 
+    private $handler;
+    private $request;
+
+    protected function setUp() : void
+    {
+        $this->handler = new PortfolioApiHandler();
+        $this->request = $this->prophesize(ServerRequestInterface::class);
+    }
+
     public function testResponseNotSearchByKeyword()
     {
-        $pingHandler = new PortfolioApiHandler();
-        $response = $pingHandler->handle(
-            $this->prophesize(ServerRequestInterface::class)->reveal()
+        $response = $this->handler->handle(
+            $this->request->reveal()
         );
 
         $jsonDecoded = json_decode((string) $response->getBody());
@@ -31,13 +39,11 @@ class PortfolioApiHandlerTest extends TestCase
 
     public function testResponseSearchByKeyword()
     {
-        $pingHandler = new PortfolioApiHandler();
-        $request     = $this->prophesize(ServerRequestInterface::class);
-        $request->getQueryParams()->willReturn([
+        $this->request->getQueryParams()->willReturn([
             'keyword' => 'website a'
         ]);
-        $response = $pingHandler->handle(
-            $request->reveal()
+        $response = $this->handler->handle(
+            $this->request->reveal()
         );
 
         $jsonDecoded = json_decode((string) $response->getBody());
