@@ -50,7 +50,7 @@ const router = new VueRouter({
 
 router.afterEach(to => document.title = to.meta.title);
 
-new Vue({router, store: store, createPage: createPage}).$mount('#root');
+new Vue({router, store: store}).$mount('#root');
 
 // https://vuejs.org/v2/guide/
 // https://router.vuejs.org/guide/#html
