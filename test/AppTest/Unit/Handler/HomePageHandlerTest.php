@@ -12,6 +12,9 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ServerRequestInterface;
 
+use function ob_get_clean;
+use function ob_start;
+
 class HomePageHandlerTest extends TestCase
 {
     use ProphecyTrait;

@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ServerRequestInterface;
 
+use function ob_get_clean;
+use function ob_start;
+
 class ContactPageHandlerTest extends TestCase
 {
     use ProphecyTrait;
