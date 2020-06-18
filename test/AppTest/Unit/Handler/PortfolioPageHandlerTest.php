@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace AppTest\Unit\Handler;
 
-use App\Handler\HomePageHandler;
+use App\Handler\PortfolioPageHandler;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ServerRequestInterface;
 
-class HomePageHandlerTest extends TestCase
+class PortfolioPageHandlerTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -20,14 +19,14 @@ class HomePageHandlerTest extends TestCase
     {
         $renderer = $this->prophesize(TemplateRendererInterface::class);
         $renderer
-            ->render('app::home-page', Argument::type('array'))
-            ->willReturn(require_once 'src/App/templates/app/home-page.phtml');
+            ->render('app::portfolio-page')
+            ->willReturn(require_once 'src/App/templates/app/portfolio-page.phtml');
 
-        $homePage = new HomePageHandler(
+        $page = new PortfolioPageHandler(
             $renderer->reveal()
         );
 
-        $response = $homePage->handle(
+        $response = $page->handle(
             $this->prophesize(ServerRequestInterface::class)->reveal()
         );
 
