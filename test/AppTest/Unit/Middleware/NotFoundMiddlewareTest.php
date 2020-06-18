@@ -28,7 +28,7 @@ class NotFoundMiddlewareTest extends TestCase
             [
                 'mezzio' => [
                     'error_handler' => [
-                        'template_404'   => 'error::404',
+                        'template_404' => 'error::404',
                     ],
                 ],
             ]

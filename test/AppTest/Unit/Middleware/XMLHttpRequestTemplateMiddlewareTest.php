@@ -21,9 +21,9 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
     private $request;
     private $handler;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
-        $this->renderer   = $this->prophesize(TemplateRendererInterface::class);
+        $this->renderer = $this->prophesize(TemplateRendererInterface::class);
         (function ($renderer) {
             $renderer->layout = 'layout';
         })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal());
@@ -62,9 +62,9 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
 
         $this->assertEquals(
             'layout',
-            ((function ($renderer) {
+            (function ($renderer) {
                 return $renderer->layout;
-            })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal()))
+            })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal())
         );
     }
 }

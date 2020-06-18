@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class IsDevelopmentTest extends TestCase
 {
-    public function provideConfig()
+    public function provideConfig(): array
     {
         return [
             'non empty falsy debug config' => [['debug' => false]],
@@ -20,9 +20,9 @@ class IsDevelopmentTest extends TestCase
     /**
      * @dataProvider provideConfig
      */
-    public function testIsNotDevelopment($config)
+    public function testIsNotDevelopment(array $config)
     {
-        $helper = new IsDevelopment([]);
+        $helper = new IsDevelopment($config);
         $this->assertFalse($helper());
     }
 

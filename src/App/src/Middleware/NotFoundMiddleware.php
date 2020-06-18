@@ -22,7 +22,7 @@ class NotFoundMiddleware implements MiddlewareInterface
         $this->config   = $config;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         return new HtmlResponse(
             $this->template->render($this->config['mezzio']['error_handler']['template_404'])

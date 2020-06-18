@@ -10,16 +10,18 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function in_array;
+
 class XMLHttpRequestTemplateMiddleware implements MiddlewareInterface
 {
     private $template;
 
     public function __construct(TemplateRendererInterface $template)
     {
-        $this->template        = $template;
+        $this->template = $template;
     }
 
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if (in_array('XMLHttpRequest', $request->getHeader('X-Requested-With'), true)) {
             (function ($template) {

@@ -9,21 +9,23 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function array_filter;
+use function strpos;
+use function strtolower;
+
 class PortfolioApiHandler implements RequestHandlerInterface
 {
-    public function handle(ServerRequestInterface $request) : ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $data  = include './data/portfolio.php';
+        $data    = include './data/portfolio.php';
         $keyword = $request->getQueryParams()['keyword'] ?? '';
 
         if ($keyword) {
             $keyword = strtolower($keyword);
-            $data = array_filter($data, function ($value) use ($keyword) {
-                return (
-                    strpos(strtolower($value['title']), $keyword) !== false
+            $data    = array_filter($data, function ($value) use ($keyword) {
+                return strpos(strtolower($value['title']), $keyword) !== false
                     ||
-                    strpos(strtolower($value['link']), $keyword) !== false
-                );
+                    strpos(strtolower($value['link']), $keyword) !== false;
             });
         }
 

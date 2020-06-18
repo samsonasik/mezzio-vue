@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace AppTest\Unit\Handler\Api;
 
 use App\Handler\Api\PortfolioApiHandler;
-use function json_decode;
 use Laminas\Diactoros\Response\JsonResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ServerRequestInterface;
+
+use function json_decode;
 
 class PortfolioApiHandlerTest extends TestCase
 {
@@ -18,7 +19,7 @@ class PortfolioApiHandlerTest extends TestCase
     private $handler;
     private $request;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->handler = new PortfolioApiHandler();
         $this->request = $this->prophesize(ServerRequestInterface::class);
@@ -39,7 +40,7 @@ class PortfolioApiHandlerTest extends TestCase
     public function testResponseSearchByKeyword()
     {
         $this->request->getQueryParams()->willReturn([
-            'keyword' => 'website a'
+            'keyword' => 'website a',
         ]);
         $response = $this->handler->handle(
             $this->request->reveal()
