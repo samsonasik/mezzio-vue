@@ -16,60 +16,55 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
 
-    public function testDisableLayoutOnXMLHttpRequest()
+    private $renderer;
+    private $middleware;
+    private $request;
+    private $handler;
+
+    protected function setUp() : void
     {
-        $renderer = $this->prophesize(TemplateRendererInterface::class);
-        $middleware = new XMLHttpRequestTemplateMiddleware(
-            $renderer->reveal()
-        );
-
-        $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getHeader('X-Requested-With')->willReturn(['XMLHttpRequest']);
-
-        $handler = $this->prophesize(RequestHandlerInterface::class);
-        $handler->handle($request->reveal())->willReturn(new HtmlResponse(''));
-
+        $this->renderer   = $this->prophesize(TemplateRendererInterface::class);
         (function ($renderer) {
             $renderer->layout = 'layout';
-        })->bindTo($renderer->reveal(), $renderer->reveal())($renderer->reveal());
+        })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal());
 
-        $response = $middleware->process(
-            $request->reveal(),
-            $handler->reveal()
+        $this->middleware = new XMLHttpRequestTemplateMiddleware(
+            $this->renderer->reveal()
+        );
+
+        $this->request = $this->prophesize(ServerRequestInterface::class);
+        $this->handler = $this->prophesize(RequestHandlerInterface::class);
+        $this->handler->handle($this->request->reveal())->willReturn(new HtmlResponse(''));
+    }
+
+    public function testDisableLayoutOnXMLHttpRequest()
+    {
+        $this->request->getHeader('X-Requested-With')->willReturn(['XMLHttpRequest']);
+
+        $response = $this->middleware->process(
+            $this->request->reveal(),
+            $this->handler->reveal()
         );
 
         $this->assertFalse((function ($renderer) {
             return $renderer->layout;
-        })->bindTo($renderer->reveal(), $renderer->reveal())($renderer->reveal()));
+        })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal()));
     }
 
     public function testEnableLayoutOnNormalHttpRequest()
     {
-        $renderer = $this->prophesize(TemplateRendererInterface::class);
-        $middleware = new XMLHttpRequestTemplateMiddleware(
-            $renderer->reveal()
-        );
+        $this->request->getHeader('X-Requested-With')->willReturn([]);
 
-        $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getHeader('X-Requested-With')->willReturn([]);
-
-        $handler = $this->prophesize(RequestHandlerInterface::class);
-        $handler->handle($request->reveal())->willReturn(new HtmlResponse(''));
-
-        (function ($renderer) {
-            $renderer->layout = 'layout';
-        })->bindTo($renderer->reveal(), $renderer->reveal())($renderer->reveal());
-
-        $response = $middleware->process(
-            $request->reveal(),
-            $handler->reveal()
+        $response = $this->middleware->process(
+            $this->request->reveal(),
+            $this->handler->reveal()
         );
 
         $this->assertEquals(
             'layout',
             ((function ($renderer) {
                 return $renderer->layout;
-            })->bindTo($renderer->reveal(), $renderer->reveal())($renderer->reveal()))
+            })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal()))
         );
     }
 }
