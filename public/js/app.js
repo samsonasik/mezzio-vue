@@ -1,6 +1,7 @@
-import createPage from './create-page.js';
 import about      from './about.js';
+import createPage from './create-page.js';
 import portfolio  from './portfolio.js';
+import store      from './store.js';
 
 const routes = [
     {
@@ -49,7 +50,7 @@ const router = new VueRouter({
 
 router.afterEach(to => document.title = to.meta.title);
 
-new Vue({router}).$mount('#root');
+new Vue({router, store: store, createPage: createPage}).$mount('#root');
 
 // https://vuejs.org/v2/guide/
 // https://router.vuejs.org/guide/#html

@@ -1,17 +1,5 @@
 import createPage from './create-page.js';
 
-const store = new Vuex.Store({
-    state: {
-        portfolio : []
-    },
-    mutations: {
-        search (state, data) {
-            sessionStorage.setItem('search-' + data.keyword, JSON.stringify(data.value));
-            state.portfolio[data.keyword] = data.value;
-        }
-    }
-});
-
 let portfolio = createPage(
     'portfolio',
     {
@@ -29,15 +17,15 @@ let portfolio = createPage(
                 ? e.target.value
                 : '';
 
-            if (typeof store.state.portfolio[keyword] !== 'undefined') {
-                this.portfolio = store.state.portfolio[keyword];
+            if (typeof this.$store.state.portfolio[keyword] !== 'undefined') {
+                this.portfolio = this.$store.state.portfolio[keyword];
 
                 return;
             }
 
             if (sessionStorage.getItem('search-' + keyword)) {
                 let portfolio  = JSON.parse(sessionStorage.getItem('search-' + keyword));
-                store.commit('search', { keyword: keyword, value: portfolio });
+                this.$store.commit('search', { keyword: keyword, value: portfolio });
                 this.portfolio = portfolio;
 
                 return;
@@ -56,7 +44,7 @@ let portfolio = createPage(
                     ).then(response =>  resolve(response.json()));
                 }).then(result => this.portfolio = result);
 
-                store.commit('search', { keyword: keyword, value: this.portfolio });
+                this.$store.commit('search', { keyword: keyword, value: this.portfolio });
             })();
         }
     },
