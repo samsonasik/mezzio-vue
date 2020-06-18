@@ -36,8 +36,6 @@ class HomePageHandlerTest extends TestCase
             ->willReturn('');
 
         $homePage = new HomePageHandler(
-            get_class($this->container->reveal()),
-            $this->router->reveal(),
             $renderer->reveal()
         );
 
