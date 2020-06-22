@@ -1,12 +1,8 @@
-let store = new Vuex.Store({
-    state: {
-        portfolio : []
-    },
-    mutations: {
-        search (state, data) {
-            sessionStorage.setItem('search-' + data.keyword, JSON.stringify(data.value));
-            state.portfolio[data.keyword] = data.value;
-        }
+import portfolioStoreModule from './portfolio-store-module.js';
+
+const store = new Vuex.Store({
+    modules: {
+        portfolio: portfolioStoreModule
     }
 });
 
