@@ -11,8 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\ServerRequestInterface;
 
-use function ob_get_clean;
-use function ob_start;
+use function file_get_contents;
 
 class PortfolioPageHandlerTest extends TestCase
 {
@@ -21,10 +20,7 @@ class PortfolioPageHandlerTest extends TestCase
     public function testReturnsHtmlResponse()
     {
         $renderer = $this->prophesize(TemplateRendererInterface::class);
-
-        ob_start();
-        require_once 'src/App/templates/app/portfolio-page.phtml';
-        $content = ob_get_clean();
+        $content  = file_get_contents('src/App/templates/app/portfolio-page.phtml');
 
         $renderer
             ->render('app::portfolio-page')
