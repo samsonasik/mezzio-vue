@@ -1,4 +1,17 @@
 import createPage from './create-page.js';
+import store      from './store.js';
+
+store.registerModule('portfolio', {
+    state: {
+        portfolio : []
+    },
+    mutations: {
+        searchPortfolio (state, data) {
+            sessionStorage.setItem('search-portfolio-' + data.keyword, JSON.stringify(data.value));
+            state.portfolio[data.keyword] = data.value;
+        }
+    }
+});
 
 let portfolio = createPage(
     'portfolio',
@@ -17,15 +30,15 @@ let portfolio = createPage(
                 ? e.target.value
                 : '';
 
-            if (typeof this.$store.state.portfolio[keyword] !== 'undefined') {
-                this.portfolio = this.$store.state.portfolio[keyword];
+            if (typeof store.state.portfolio.portfolio[keyword] !== 'undefined') {
+                this.portfolio = store.state.portfolio.portfolio[keyword];
 
                 return;
             }
 
-            if (sessionStorage.getItem('search-' + keyword)) {
-                let portfolio  = JSON.parse(sessionStorage.getItem('search-' + keyword));
-                this.$store.commit('search', { keyword: keyword, value: portfolio });
+            if (sessionStorage.getItem('search-portfolio-' + keyword)) {
+                let portfolio  = JSON.parse(sessionStorage.getItem('search-portfolio-' + keyword));
+                store.commit('searchPortfolio', { keyword: keyword, value: portfolio });
                 this.portfolio = portfolio;
 
                 return;
@@ -44,7 +57,7 @@ let portfolio = createPage(
                     ).then(response =>  resolve(response.json()));
                 }).then(result => this.portfolio = result);
 
-                this.$store.commit('search', { keyword: keyword, value: this.portfolio });
+                store.commit('searchPortfolio', { keyword: keyword, value: this.portfolio });
             })();
         }
     },
