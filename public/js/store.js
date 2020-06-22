@@ -1,8 +1,8 @@
-import portfolioStore from './portfolio-store.js';
+import portfolioStoreModule from './portfolio-store-module.js';
 
 const store = new Vuex.Store({
     modules: {
-        portfolio: portfolioStore
+        portfolio: portfolioStoreModule
     }
 });
 

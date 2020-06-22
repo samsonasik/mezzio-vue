@@ -1,4 +1,4 @@
-let portfolioStore = {
+let portfolioStoreModule = {
     namespaced: true,
     state: {
         portfolio : []
@@ -11,4 +11,4 @@ let portfolioStore = {
     }
 }
 
-export default portfolioStore;
+export default portfolioStoreModule;
