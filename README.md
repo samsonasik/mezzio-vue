@@ -4,6 +4,18 @@
 [![Code Coverage](https://codecov.io/gh/samsonasik/mezzio-vue/branch/master/graph/badge.svg)](https://codecov.io/gh/samsonasik/mezzio-vue)
 [![Downloads](https://poser.pugx.org/samsonasik/mezzio-vue/downloads)](https://packagist.org/packages/samsonasik/mezzio-vue)
 
+Introduction
+------------
+
+A Mezzio 3 Skeleton Application with Vue.js integration.
+
+Features
+--------
+
+- SPA application with Vue Router with cached pages after visited.
+- Using server side template from Mezzio, compiled with `Vue.compile()` in Vue.js component's `render()`.
+- Using Vuex for state management library, combo with sessionStorage on portfolio page.
+
 ## Setup
 
 *1.* Run composer create-project command:
