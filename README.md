@@ -66,9 +66,11 @@ $ composer clear-config-cache
 In `default.phtml`, we have a `isDevelopment()` view helper check to use `js/app.js` when on development, and use `/js/dist/bundle.js` on production when exists.
 
 ```php
+$isDevelopment = $this->isDevelopment();
+
 // ...
     ->prependFile(
-        $this->isDevelopment()
+        $isDevelopment
             ? '/js/app.js'
             : (
                 // when after run webpack, allow to use bundled js
