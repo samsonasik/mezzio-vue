@@ -36,19 +36,20 @@ So, we can run:
 ```bash
 $ webpack
 
-Hash: 87078eb52a2e82bc4167
+Hash: c4f347d818e357d7529c
 Version: webpack 4.43.0
-Time: 166ms
-Built at: 06/16/2020 1:56:19 PM
-                   Asset      Size  Chunks             Chunk Names
-public/js/dist/bundle.js  2.79 KiB       0  [emitted]  main
+Time: 501ms
+Built at: 06/22/2020 5:06:42 PM
+                   Asset     Size  Chunks             Chunk Names
+public/js/dist/bundle.js  2.9 KiB       0  [emitted]  main
 Entrypoint main = public/js/dist/bundle.js
-[0] ./public/js/app.js + 4 modules 4.8 KiB {0} [built]
+[0] ./public/js/app.js + 5 modules 5.05 KiB {0} [built]
     | ./public/js/app.js 1.61 KiB [built]
-    | ./public/js/create-page.js 922 bytes [built]
+    | ./public/js/create-page.js 918 bytes [built]
     | ./public/js/about.js 388 bytes [built]
-    | ./public/js/portfolio.js 1.62 KiB [built]
-    | ./public/js/store.js 308 bytes [built]
+    | ./public/js/portfolio.js 1.68 KiB [built]
+    | ./public/js/store.js 164 bytes [built]
+    | ./public/js/portfolio-store.js 341 bytes [built]
 ```
 
 After it generated, we can run the following commands to get `production` environment by default:
