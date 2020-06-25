@@ -38,7 +38,7 @@ let portfolio = createPage(
                         {
                             method: 'GET',
                             headers: {
-                                'X-Requested-With': 'XMLHttpRequest',
+                                'Accept': 'application/json',
                             }
                         }
                     ).then(response =>  resolve(response.json()));
