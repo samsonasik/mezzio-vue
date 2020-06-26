@@ -21,7 +21,7 @@ Features
 *1.* Run composer create-project command:
 
 ```bash
-$ composer create-project -sdev samsonasik/mezzio-vue
+$ composer create-project samsonasik/mezzio-vue
 $ composer development-enable
 ```
 
