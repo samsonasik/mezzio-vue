@@ -21,15 +21,15 @@ Features
 *1.* Run composer create-project command:
 
 ```bash
-$ composer create-project samsonasik/mezzio-vue
-$ composer development-enable
+composer create-project samsonasik/mezzio-vue
+composer development-enable
 ```
 
 *2.* Run PHP Development server
 
 ```php
-$ cd mezzio-vue
-$ composer serve
+cd mezzio-vue
+composer serve
 ```
 
 *3.* Open web browser http://localhost:8080
@@ -39,14 +39,14 @@ $ composer serve
 For deploy to production purpose, it has `webpack.config.js` in root directory that when we run `webpack` command, we can get `public/js/dist/bundle.js` after run it. If you don't have a `webpack` installed yet in your system, you can install nodejs and install `webpack` and `webpack-cli`:
 
 ```bash
-$ sudo npm install -g webpack
-$ sudo npm install -g webpack-cli
+sudo npm install -g webpack
+sudo npm install -g webpack-cli
 ```
 
 So, we can run:
 
 ```bash
-$ webpack
+webpack
 
 Hash: 6ed53cca3add09d67d7f
 Version: webpack 4.43.0
@@ -68,13 +68,13 @@ After it generated, we can run the following commands to get `production` enviro
 
 ```bash
 # ensure no left over file development config
-$ rm config/development.config.php && rm config/autoload/development.local.php
+rm config/development.config.php && rm config/autoload/development.local.php
 
 # install with --no-dev
-$ composer install --no-dev
+composer install --no-dev
 
 # ensure no left over file cache before re-build cache
-$ composer clear-config-cache
+composer clear-config-cache
 ```
 
 In `default.phtml`, we have a `isDevelopment()` view helper check to use `js/app.js` when on development, and use `/js/dist/bundle.js` on production when exists.
