@@ -1,6 +1,6 @@
 import createPage from './create-page.js';
 
-export const showoff = (name) => console.log(name, ' showing off');
+const showoff = (name) => console.log(name, ' showing off');
 
 const about = createPage(
   'about',
