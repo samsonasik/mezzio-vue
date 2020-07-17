@@ -10,8 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 use function array_filter;
-use function strpos;
-use function strtolower;
+use function stripos;
 
 class PortfolioApiHandler implements RequestHandlerInterface
 {
@@ -21,11 +20,10 @@ class PortfolioApiHandler implements RequestHandlerInterface
         $keyword = $request->getQueryParams()['keyword'] ?? '';
 
         if ($keyword) {
-            $keyword = strtolower($keyword);
-            $data    = array_filter($data, function ($value) use ($keyword) {
-                return strpos(strtolower($value['title']), $keyword) !== false
+            $data = array_filter($data, function ($value) use ($keyword) {
+                return stripos($value['title'], $keyword) !== false
                     ||
-                    strpos(strtolower($value['link']), $keyword) !== false;
+                    stripos($value['link'], $keyword) !== false;
             });
         }
 

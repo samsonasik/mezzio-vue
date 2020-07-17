@@ -1,0 +1,20 @@
+{
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "templates",
+            "src/ConfigProvider.php"
+        ]
+    },
+    "logs": {
+        "text": "infection.log",
+        "badge": {
+            "branch": "master"
+        }
+    },
+    "mutators": {
+        "@default": true
+    }
+}
