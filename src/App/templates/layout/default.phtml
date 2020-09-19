@@ -18,9 +18,9 @@ $this->inlineScript()
             ),
         'module'
     )
-    ->prependFile('https://unpkg.com/vuex@3.4.0/dist/vuex.'. (! $isDevelopment ? 'min.' : '') . 'js')
-    ->prependFile('https://unpkg.com/vue-router@3.3.2/dist/vue-router.'. (! $isDevelopment ? 'min.' : '') . 'js')
-    ->prependFile('https://unpkg.com/vue@2.6.11/dist/vue.'. (! $isDevelopment ? 'min.' : '') . 'js')
+    ->prependFile('https://unpkg.com/vuex@4.0.0-beta.4/dist/vuex.global.'. (! $isDevelopment ? 'prod.' : '') . 'js')
+    ->prependFile('https://unpkg.com/vue-router@4.0.0-beta.10/dist/vue-router.global.'. (! $isDevelopment ? 'prod.' : '') . 'js')
+    ->prependFile('https://unpkg.com/vue@3.0.0/dist/vue.global.'. (! $isDevelopment ? 'prod.' : '') . 'js')
 
     ->prependFile('https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js')
     ->prependFile('https://code.jquery.com/jquery-3.5.0.min.js');
@@ -78,9 +78,11 @@ $this->inlineScript()
 
         <main class="container">
             <div id="app">
-                <keep-alive> <!-- make content cached if already loaded -->
-                    <router-view></router-view>
-                </keep-alive>
+                <router-view v-slot="{ Component }">
+                    <keep-alive>
+                        <component :is="Component" />
+                    </keep-alive>
+                </router-view>
             </div>
         </main>
     </div>

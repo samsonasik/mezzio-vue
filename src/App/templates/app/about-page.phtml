@@ -1,6 +1,6 @@
 <h1>About Me</h1>
 <p>
     I'm a web developer. <br /><br />
-    My name is {{ this.$parent.name }}. <br />
-    <button v-on:click="this.$parent.hit">Click this as a proof</button>
+    My name is {{ $this.data.name }}. <br />
+    <button v-on:click="$this.hit">Click this as a proof</button>
 </p>
