@@ -5,7 +5,9 @@
 [![Code Coverage](https://codecov.io/gh/samsonasik/mezzio-vue/branch/master/graph/badge.svg)](https://codecov.io/gh/samsonasik/mezzio-vue)
 [![Downloads](https://poser.pugx.org/samsonasik/mezzio-vue/downloads)](https://packagist.org/packages/samsonasik/mezzio-vue)
 
-> Version ~0.0.3 is for Vue 2 usage in Mezzio application
+> Version ^0.1.0 is for Vue 3 usage in Mezzio application
+
+> For Vue 2 usage in Mezzio application, you can use version [~0.0.3](https://github.com/samsonasik/mezzio-vue/tree/0.0.x)
 
 Introduction
 ------------
