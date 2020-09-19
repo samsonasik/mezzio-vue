@@ -58,15 +58,17 @@ Version: webpack 4.43.0
 Time: 462ms
 Built at: 06/22/2020 5:14:09 PM
                    Asset     Size  Chunks             Chunk Names
-public/js/dist/bundle.js  2.9 KiB       0  [emitted]  main
+public/js/dist/bundle.js  2.94 KiB       0  [emitted]  main
 Entrypoint main = public/js/dist/bundle.js
-[0] ./public/js/app.js + 5 modules 5.08 KiB {0} [built]
-    | ./public/js/app.js 1.61 KiB [built]
-    | ./public/js/create-page.js 918 bytes [built]
-    | ./public/js/about.js 388 bytes [built]
-    | ./public/js/portfolio.js 1.68 KiB [built]
-    | ./public/js/store.js 183 bytes [built]
-    | ./public/js/portfolio-store-module.js 353 bytes [built]
+[0] ./public/js/app.js + 7 modules 4.09 KiB {0} [built]
+    | ./public/js/app.js 856 bytes [built]
+    | ./public/js/home.js 103 bytes [built]
+    | ./public/js/about.js 360 bytes [built]
+    | ./public/js/contact.js 112 bytes [built]
+    | ./public/js/portfolio.js 1.36 KiB [built]
+    | ./public/js/store.js 176 bytes [built]
+    | ./public/js/create-page.js 872 bytes [built]
+    | ./public/js/portfolio-store-module.js 319 bytes [built]
 ```
 
 After it generated, we can run the following commands to get `production` environment by default:
