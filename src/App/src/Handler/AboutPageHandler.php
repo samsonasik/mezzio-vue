@@ -21,6 +21,6 @@ class AboutPageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new HtmlResponse($this->template->render('app::about-page'));
+        return new HtmlResponse($this->template->render('app::about-page', ['title' => 'About Me']));
     }
 }

@@ -23,7 +23,7 @@ class AboutPageHandlerTest extends TestCase
         $content  = file_get_contents('src/App/templates/app/about-page.phtml');
 
         $renderer
-            ->render('app::about-page')
+            ->render('app::about-page', ['title' => 'About Me'])
             ->willReturn($content);
 
         $page = new AboutPageHandler(
