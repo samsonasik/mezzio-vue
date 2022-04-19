@@ -23,9 +23,9 @@ class PingHandlerTest extends TestCase
             $this->prophesize(ServerRequestInterface::class)->reveal()
         );
 
-        $json = json_decode((string) $response->getBody());
+        $json = json_decode((string) $response->getBody(), null, 512, JSON_THROW_ON_ERROR);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $this->assertTrue(isset($json->ack));
+        $this->assertTrue(property_exists($json, 'ack') && $json->ack !== null);
     }
 }

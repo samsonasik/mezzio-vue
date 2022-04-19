@@ -23,8 +23,8 @@
         }
     ],
     "require": {
-        "php": "^7.3",
-        "laminas/laminas-component-installer": "^2.1.2",
+        "php": "^7.4 || ~8.0.0 || ~8.1.0",
+        "laminas/laminas-component-installer": "^2.7",
         "laminas/laminas-config-aggregator": "^1.2",
         "laminas/laminas-diactoros": "^1.8.7 || ^2.2.2",
         "laminas/laminas-servicemanager": "^3.4",
@@ -43,13 +43,18 @@
         "phpspec/prophecy": "^1.10.3",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.0.1",
+        "rector/rector": "dev-main",
         "roave/security-advisories": "dev-master"
     },
     "config": {
         "platform": {
-            "php": "7.3"
+            "php": "7.4"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "laminas/laminas-component-installer": true
+        }
     },
     "extra": {
         "laminas": {

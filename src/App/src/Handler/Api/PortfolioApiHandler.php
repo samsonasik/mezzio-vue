@@ -20,11 +20,9 @@ class PortfolioApiHandler implements RequestHandlerInterface
         $keyword = $request->getQueryParams()['keyword'] ?? '';
 
         if ($keyword) {
-            $data = array_filter($data, function ($value) use ($keyword) {
-                return stripos($value['title'], $keyword) !== false
-                    ||
-                    stripos($value['link'], $keyword) !== false;
-            });
+            $data = array_filter($data, fn($value) => stripos($value['title'], (string) $keyword) !== false
+                ||
+                stripos($value['link'], (string) $keyword) !== false);
         }
 
         return new JsonResponse($data);

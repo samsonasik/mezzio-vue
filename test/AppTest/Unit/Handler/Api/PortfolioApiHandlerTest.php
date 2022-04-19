@@ -31,7 +31,7 @@ class PortfolioApiHandlerTest extends TestCase
             $this->request->reveal()
         );
 
-        $jsonDecoded = json_decode((string) $response->getBody());
+        $jsonDecoded = json_decode((string) $response->getBody(), null, 512, JSON_THROW_ON_ERROR);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertCount(3, $jsonDecoded);
@@ -46,7 +46,7 @@ class PortfolioApiHandlerTest extends TestCase
             $this->request->reveal()
         );
 
-        $jsonDecoded = json_decode((string) $response->getBody());
+        $jsonDecoded = json_decode((string) $response->getBody(), null, 512, JSON_THROW_ON_ERROR);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertCount(1, $jsonDecoded);

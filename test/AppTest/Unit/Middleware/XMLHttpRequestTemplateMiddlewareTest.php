@@ -41,30 +41,26 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
     {
         $this->request->getHeader('X-Requested-With')->willReturn(['XMLHttpRequest']);
 
-        $response = $this->middleware->process(
+        $this->middleware->process(
             $this->request->reveal(),
             $this->handler->reveal()
         );
 
-        $this->assertFalse((function ($renderer) {
-            return $renderer->layout;
-        })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal()));
+        $this->assertFalse((fn($renderer) => $renderer->layout)->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal()));
     }
 
     public function testEnableLayoutOnNormalHttpRequest()
     {
         $this->request->getHeader('X-Requested-With')->willReturn([]);
 
-        $response = $this->middleware->process(
+        $this->middleware->process(
             $this->request->reveal(),
             $this->handler->reveal()
         );
 
         $this->assertEquals(
             'layout',
-            (function ($renderer) {
-                return $renderer->layout;
-            })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal())
+            (fn($renderer) => $renderer->layout)->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal())
         );
     }
 }
