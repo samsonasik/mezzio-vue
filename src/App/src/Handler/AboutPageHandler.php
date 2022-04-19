@@ -12,7 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class AboutPageHandler implements RequestHandlerInterface
 {
-    private $template;
+    private TemplateRendererInterface $template;
 
     public function __construct(TemplateRendererInterface $template)
     {

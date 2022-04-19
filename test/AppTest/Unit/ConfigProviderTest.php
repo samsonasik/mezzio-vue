@@ -9,14 +9,14 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigProviderTest extends TestCase
 {
-    private $configProvider;
+    private ConfigProvider $configProvider;
 
     protected function setUp(): void
     {
         $this->configProvider = new ConfigProvider();
     }
 
-    public function testInvoke()
+    public function testInvoke(): void
     {
         $this->assertIsArray(($this->configProvider)());
     }

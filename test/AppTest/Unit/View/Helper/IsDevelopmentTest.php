@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 class IsDevelopmentTest extends TestCase
 {
+    /**
+     * @return array<string, mixed[]>
+     */
     public function provideConfig(): array
     {
         return [
@@ -19,14 +22,15 @@ class IsDevelopmentTest extends TestCase
 
     /**
      * @dataProvider provideConfig
+     * @param mixed[]|array<string, true> $config
      */
-    public function testIsNotDevelopment(array $config)
+    public function testIsNotDevelopment(array $config): void
     {
         $helper = new IsDevelopment($config);
         $this->assertFalse($helper());
     }
 
-    public function testIsDevelopment()
+    public function testIsDevelopment(): void
     {
         $helper = new IsDevelopment(['debug' => true]);
         $this->assertTrue($helper());

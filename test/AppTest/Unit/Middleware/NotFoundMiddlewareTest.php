@@ -16,7 +16,7 @@ class NotFoundMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
 
-    public function testReturnsHtml404Response()
+    public function testReturnsHtml404Response(): void
     {
         $renderer = $this->prophesize(TemplateRendererInterface::class);
         $renderer

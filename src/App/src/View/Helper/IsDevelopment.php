@@ -8,8 +8,11 @@ use Laminas\View\Helper\AbstractHelper;
 
 class IsDevelopment extends AbstractHelper
 {
-    private $config;
+    private array $config;
 
+    /**
+     * @param mixed[] $config
+     */
     public function __construct(array $config)
     {
         $this->config = $config;

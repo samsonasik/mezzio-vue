@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Handler\AboutPageHandler;
+use App\Handler\Api\PortfolioApiHandler;
+use App\Handler\ContactPageHandler;
+use App\Handler\HomePageHandler;
+use App\Handler\HomePageHandlerFactory;
+use App\Handler\PingHandler;
+use App\Handler\PortfolioPageHandler;
+use App\Middleware\NotFoundMiddleware;
+use App\Middleware\XMLHttpRequestTemplateMiddleware;
 use App\View\Helper\IsDevelopment;
 use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
@@ -19,6 +28,15 @@ class ConfigProvider
      *
      * To add a bit of a structure, each section is defined in a separate
      * method which returns an array with its configuration.
+     *
+     * @return array{
+     *      dependencies: array<string, mixed[]>, templates: array<string, array<string, string[]>>,
+     *         view_helpers: array{
+     *          aliases: array{isDevelopment: class-string<IsDevelopment>}, factories: array<
+     *              string, class-string<ReflectionBasedAbstractFactory
+     *          >>
+     *      }
+     * }
      */
     public function __invoke(): array
     {
@@ -38,27 +56,33 @@ class ConfigProvider
 
     /**
      * Returns the container dependencies
+     *
+     * @return array{invokables: array<string, class-string<PingHandler>>, factories: array<
+     *      string, (class-string<HomePageHandlerFactory> | class-string<ReflectionBasedAbstractFactory>)
+     * >}
      */
     public function getDependencies(): array
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
+                PingHandler::class => PingHandler::class,
             ],
             'factories'  => [
-                Handler\HomePageHandler::class                     => Handler\HomePageHandlerFactory::class,
-                Handler\AboutPageHandler::class                    => ReflectionBasedAbstractFactory::class,
-                Handler\ContactPageHandler::class                  => ReflectionBasedAbstractFactory::class,
-                Handler\Api\PortfolioApiHandler::class             => ReflectionBasedAbstractFactory::class,
-                Handler\PortfolioPageHandler::class                => ReflectionBasedAbstractFactory::class,
-                Middleware\XMLHttpRequestTemplateMiddleware::class => ReflectionBasedAbstractFactory::class,
-                Middleware\NotFoundMiddleware::class               => ReflectionBasedAbstractFactory::class,
+                HomePageHandler::class                  => HomePageHandlerFactory::class,
+                AboutPageHandler::class                 => ReflectionBasedAbstractFactory::class,
+                ContactPageHandler::class               => ReflectionBasedAbstractFactory::class,
+                PortfolioApiHandler::class              => ReflectionBasedAbstractFactory::class,
+                PortfolioPageHandler::class             => ReflectionBasedAbstractFactory::class,
+                XMLHttpRequestTemplateMiddleware::class => ReflectionBasedAbstractFactory::class,
+                NotFoundMiddleware::class               => ReflectionBasedAbstractFactory::class,
             ],
         ];
     }
 
     /**
      * Returns the templates configuration
+     *
+     * @return array{paths: array<string, array<string>>}
      */
     public function getTemplates(): array
     {

@@ -8,16 +8,19 @@ use App\Handler\Api\PortfolioApiHandler;
 use Laminas\Diactoros\Response\JsonResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ServerRequestInterface;
 
 use function json_decode;
+
+use const JSON_THROW_ON_ERROR;
 
 class PortfolioApiHandlerTest extends TestCase
 {
     use ProphecyTrait;
 
-    private $handler;
-    private $request;
+    private PortfolioApiHandler $handler;
+    private ObjectProphecy $request;
 
     protected function setUp(): void
     {
@@ -25,7 +28,7 @@ class PortfolioApiHandlerTest extends TestCase
         $this->request = $this->prophesize(ServerRequestInterface::class);
     }
 
-    public function testResponseNotSearchByKeyword()
+    public function testResponseNotSearchByKeyword(): void
     {
         $response = $this->handler->handle(
             $this->request->reveal()
@@ -37,7 +40,7 @@ class PortfolioApiHandlerTest extends TestCase
         $this->assertCount(3, $jsonDecoded);
     }
 
-    public function testResponseSearchByKeyword()
+    public function testResponseSearchByKeyword(): void
     {
         $this->request->getQueryParams()->willReturn([
             'keyword' => 'website a',

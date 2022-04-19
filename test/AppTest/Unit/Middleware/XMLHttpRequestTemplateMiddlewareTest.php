@@ -9,6 +9,7 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -16,15 +17,15 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
 
-    private $renderer;
-    private $middleware;
-    private $request;
-    private $handler;
+    private ObjectProphecy $renderer;
+    private XMLHttpRequestTemplateMiddleware $middleware;
+    private ObjectProphecy $request;
+    private ObjectProphecy $handler;
 
     protected function setUp(): void
     {
         $this->renderer = $this->prophesize(TemplateRendererInterface::class);
-        (function ($renderer) {
+        (function ($renderer): void {
             $renderer->layout = 'layout';
         })->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal());
 
@@ -37,7 +38,7 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
         $this->handler->handle($this->request->reveal())->willReturn(new HtmlResponse(''));
     }
 
-    public function testDisableLayoutOnXMLHttpRequest()
+    public function testDisableLayoutOnXMLHttpRequest(): void
     {
         $this->request->getHeader('X-Requested-With')->willReturn(['XMLHttpRequest']);
 
@@ -46,10 +47,15 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
             $this->handler->reveal()
         );
 
-        $this->assertFalse((fn($renderer) => $renderer->layout)->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal()));
+        $this->assertFalse(
+            (fn($renderer) => $renderer->layout)->bindTo(
+                $this->renderer->reveal(),
+                $this->renderer->reveal()
+            )($this->renderer->reveal())
+        );
     }
 
-    public function testEnableLayoutOnNormalHttpRequest()
+    public function testEnableLayoutOnNormalHttpRequest(): void
     {
         $this->request->getHeader('X-Requested-With')->willReturn([]);
 
@@ -60,7 +66,10 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
 
         $this->assertEquals(
             'layout',
-            (fn($renderer) => $renderer->layout)->bindTo($this->renderer->reveal(), $this->renderer->reveal())($this->renderer->reveal())
+            (fn($renderer) => $renderer->layout)->bindTo(
+                $this->renderer->reveal(),
+                $this->renderer->reveal()
+            )($this->renderer->reveal())
         );
     }
 }

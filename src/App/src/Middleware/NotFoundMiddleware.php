@@ -13,9 +13,12 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class NotFoundMiddleware implements MiddlewareInterface
 {
-    private $template;
-    private $config;
+    private TemplateRendererInterface $template;
+    private array $config;
 
+    /**
+     * @param mixed[] $config
+     */
     public function __construct(TemplateRendererInterface $template, array $config)
     {
         $this->template = $template;
