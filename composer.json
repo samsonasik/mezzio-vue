@@ -91,7 +91,10 @@
         "development-enable": "laminas-development-mode enable",
         "development-status": "laminas-development-mode status",
         "mezzio": "mezzio --ansi",
-        "serve": "php -S 0.0.0.0:8080 -t public/",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:8080 -t public/"
+        ],
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml --coverage-html=test/html --testdox"
     }
