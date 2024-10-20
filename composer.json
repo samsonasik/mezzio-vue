@@ -29,7 +29,6 @@
         "laminas/laminas-diactoros": "^2.9.2",
         "laminas/laminas-servicemanager": "^3.11.2",
         "laminas/laminas-stdlib": "^3.7.1",
-        "laminas/laminas-zendframework-bridge": "^1.5",
         "mezzio/mezzio": "^3.10.0",
         "mezzio/mezzio-helpers": "^5.8",
         "mezzio/mezzio-laminasrouter": "^3.4.0",
