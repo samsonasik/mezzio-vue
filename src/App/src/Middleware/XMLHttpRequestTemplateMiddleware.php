@@ -14,18 +14,15 @@ use function in_array;
 
 class XMLHttpRequestTemplateMiddleware implements MiddlewareInterface
 {
-    private TemplateRendererInterface $template;
-
-    public function __construct(TemplateRendererInterface $template)
+    public function __construct(private readonly TemplateRendererInterface $template)
     {
-        $this->template = $template;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if (in_array('XMLHttpRequest', $request->getHeader('X-Requested-With'), true)) {
             (function ($template): void {
-                $template->layout = false;
+                $template->layout = null;
             })->bindTo($this->template, $this->template)($this->template);
         }
 

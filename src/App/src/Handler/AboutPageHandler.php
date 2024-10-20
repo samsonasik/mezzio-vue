@@ -12,11 +12,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class AboutPageHandler implements RequestHandlerInterface
 {
-    private TemplateRendererInterface $template;
-
-    public function __construct(TemplateRendererInterface $template)
+    public function __construct(private readonly TemplateRendererInterface $template)
     {
-        $this->template = $template;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface

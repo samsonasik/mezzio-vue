@@ -47,7 +47,7 @@ class XMLHttpRequestTemplateMiddlewareTest extends TestCase
             $this->handler->reveal()
         );
 
-        $this->assertFalse(
+        $this->assertNull(
             (fn($renderer) => $renderer->layout)->bindTo(
                 $this->renderer->reveal(),
                 $this->renderer->reveal()
