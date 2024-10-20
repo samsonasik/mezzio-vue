@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.4', '8.0', '8.1']
+        php-versions: ['8.1', '8.2', '8.3']
     steps:
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.8.2
@@ -31,7 +31,7 @@ jobs:
         run: "bin/composer cs-check"
       - name: "Run test suite"
         run: "bin/composer test-coverage"
-      - if: matrix.php-versions == '7.4'
+      - if: matrix.php-versions == '8.1'
         name: Run mutation test
         env:
           INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
