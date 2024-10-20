@@ -74,8 +74,7 @@ Entrypoint main = public/js/dist/bundle.js
 After it generated, we can run the following commands to get `production` environment by default:
 
 ```bash
-# ensure no left over file development config
-rm config/development.config.php && rm config/autoload/development.local.php
+composer development-disable
 
 # install with --no-dev
 composer install --no-dev
