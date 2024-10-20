@@ -41,7 +41,7 @@
         "laminas/laminas-development-mode": "^3.6",
         "phpspec/prophecy": "^1.15.0",
         "phpspec/prophecy-phpunit": "^2.0.1",
-        "phpunit/phpunit": "^9.5.20",
+        "phpunit/phpunit": "^10.0",
         "rector/rector": "dev-main",
         "roave/security-advisories": "dev-master"
     },

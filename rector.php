@@ -21,4 +21,5 @@ return RectorConfig::configure()
         deadCode: true,
         codeQuality: true,
         typeDeclarations: true,
+        phpunit: true
     );
