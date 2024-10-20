@@ -6,6 +6,7 @@ namespace AppTest\Unit\Handler\Api;
 
 use App\Handler\Api\PortfolioApiHandler;
 use Laminas\Diactoros\Response\JsonResponse;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -40,10 +41,11 @@ class PortfolioApiHandlerTest extends TestCase
         $this->assertCount(3, $jsonDecoded);
     }
 
-    public function testResponseSearchByKeyword(): void
+    #[DataProvider('keywordProvider')]
+    public function testResponseSearchByKeyword(mixed $keyword, int $totalResult): void
     {
         $this->request->getQueryParams()->willReturn([
-            'keyword' => 'website a',
+            'keyword' => $keyword,
         ]);
         $response = $this->handler->handle(
             $this->request->reveal()
@@ -52,6 +54,16 @@ class PortfolioApiHandlerTest extends TestCase
         $jsonDecoded = json_decode((string) $response->getBody(), null, 512, JSON_THROW_ON_ERROR);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $this->assertCount(1, $jsonDecoded);
+        $this->assertCount($totalResult, $jsonDecoded);
+    }
+
+    public static function keywordProvider(): array
+    {
+        return [
+            ['', 3],
+            ['0', 3],
+            ['website a', 1],
+            [[], 3],
+        ];
     }
 }
