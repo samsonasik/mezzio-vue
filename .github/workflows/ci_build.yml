@@ -27,7 +27,7 @@ jobs:
       - name: "Validate composer.json and composer.lock"
         run: "composer validate"
       - name: "Install dependencies"
-        run: "composer install --prefer-dist --no-progress && bin/composer development-enable"
+        run: "composer install --prefer-dist --no-progress && composer development-enable"
       - name: "CS Check"
         run: "composer cs-check"
       - name: "Run test suite"
