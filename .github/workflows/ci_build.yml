@@ -24,13 +24,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Validate composer.json and composer.lock"
-        run: "bin/composer validate"
+        run: "composer validate"
       - name: "Install dependencies"
-        run: "bin/composer install --prefer-dist --no-progress && bin/composer development-enable"
+        run: "composer install --prefer-dist --no-progress && composer development-enable"
       - name: "CS Check"
-        run: "bin/composer cs-check"
+        run: "composer cs-check"
       - name: "Run test suite"
-        run: "bin/composer test-coverage"
+        run: "composer test-coverage"
       - if: matrix.php-versions == '8.1'
         name: Run mutation test
         env:
