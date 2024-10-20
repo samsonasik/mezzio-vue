@@ -10,5 +10,4 @@
 
 infection.log
 
-/.phpunit.result.cache
 /.phpunit.cache/
