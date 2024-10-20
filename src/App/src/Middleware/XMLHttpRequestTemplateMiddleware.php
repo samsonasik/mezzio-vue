@@ -25,7 +25,7 @@ class XMLHttpRequestTemplateMiddleware implements MiddlewareInterface
     {
         if (in_array('XMLHttpRequest', $request->getHeader('X-Requested-With'), true)) {
             (function ($template): void {
-                $template->layout = false;
+                $template->layout = null;
             })->bindTo($this->template, $this->template)($this->template);
         }
 
