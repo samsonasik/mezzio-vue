@@ -35,6 +35,7 @@
     },
     "require-dev": {
         "filp/whoops": "^2.14.5",
+        "infection/infection": "^0.29.10",
         "laminas/laminas-coding-standard": "^2.3.0",
         "laminas/laminas-development-mode": "^3.6",
         "phpspec/prophecy": "^1.15.0",
